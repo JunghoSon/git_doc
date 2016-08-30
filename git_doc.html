@@ -1,0 +1,111 @@
+<!DOCTYPE !html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>GIT 사용법</title>
+<style type="text/css">
+body,*{margin:0;padding:0}
+h1{padding:20px;margin-bottom:30px;background:#eee;border-bottom:2px solid #ccc}
+h2{padding:0 0 20px 20px}
+hr{margin:30px 0}
+dl{margin-left:40px}
+.mt20{margin-top:20px}
+ol li{padding:5px 0;margin-left:60px}
+</style>
+</head>
+<body>
+<h1>GIT 사용법</h1>
+<h2>* 원격 저장소 동기화</h2>
+<dl>
+	<dt>TYPE A</dt>
+	<dd>
+		<ol>
+			<li>폴더 생성</li>
+			<li>git init : git 로컬 저장소 생성</li>
+			<li>git remote add "url" : 원격 저장소 연결</li>
+			<li>git pull : 원격 저장소 소스 받기</li>
+		</ol>
+	</dd>
+	<dt class="mt20">TYPE B</dt>
+	<dd>
+		<ol>
+			<li>폴더 생성</li>
+			<li>git clone "url" : 원격 저장소 소스 받기</li>
+		</ol>
+	</dd>
+</dl>
+
+<hr />
+
+<h2>* commit 흐름</h2>
+<ol>
+	<li>수정 및 작업 후 저장</li>
+	<li>git pull : commit하기 전 원격 저장소 동기화</li>
+	<li>git status : 변경된 파일 목록 확인</li>
+	<li>git diff : 변경된 내용 확인 가능</li>
+	<li>git add . 또는 git add 파일 이름 : staging area에 추가</li>
+	<li>git status : staging area에 추가된 파일 목록 확인</li>
+	<li>git commit -m "메세지" : 작업 관려 메세지와 함께 로컬 저장소에 commit</li>
+	<li>git log : commit한 history 확인</li>
+	<li>git push origin ( master 또는 branch명 ) : 원격 저장소에 작업한 내용 동기화</li>
+</ol>
+
+<hr />
+
+<h2>* push 충돌 시 해결 방법</h2>
+<ol>
+	<li>git push 시 reject 메세지와 함께 동기화 실패</li>
+	<li>git pull(git fetch, git merge를 동시에 실행하는 명령어이기도 함) : 원격 저장소의
+	   소스를 받아온다. auto merge가 실패했다는 메세지가 발생한다.</li>
+	<li>git status 로 충돌 파일 목록 확인</li>
+	<li>git diff 또는 cat 파일명으로 충돌 내용 확인</li>
+	<li>vi 편집기 또는 직접 파일에서 적절히 수정</li>
+	<li>git status : 변경된 파일 목록 확인</li>
+	<li>git add 명령어로 staging area에 추가</li>
+	<li>git status : staging area에 추가된 파일 목록 확인</li>
+	<li>git commit -m "충돌 해결 메세지" : 로컬저장소에 commit</li>
+	<li>git log : commit한 history 확인</li>
+	<li>git push origin ( master 또는 branch명 ) : 원격 저장소에 작업한 내용 동기화</li>
+</ol>
+
+<hr />
+
+<h2>* branch 생성 및 사용</h2>
+<ol>
+	<li>git branch branch이름 : branch 생성</li>
+	<li>git checkout branch이름 : 해당 branch로 작업 영역 변경 이후 작업 내역은 master영역에는
+	   반영되지 않는다.</li>
+	<li>수정 및 작업 후 commit 한다.</li>
+	<li>git checkout master : master영역으로 작업영역 변경</li>
+	<li>git merge branch이름 : branch영역에서 작업한 내용을 master영역에 merge한다.</li>
+	<li>git pull, add, commit, push~</li>
+</ol>
+
+<hr />
+
+<h2>* branch merge 충돌 시 해결 방법</h2>
+<ol>
+	<li>git merge 시 충돌</li>
+	<li>git status 로 충돌 파일 목록 확인</li>
+	<li>git diff 또는 cat 파일명으로 충돌 내용 확인</li>
+	<li>vi 편집기 또는 직접 파일에서 적절히 수정</li>
+	<li>git status : 변경된 파일 목록 확인</li>
+	<li>git add 명령어로 staging area에 추가</li>
+	<li>git status : staging area에 추가된 파일 목록 확인</li>
+	<li>git commit -m "충돌 해결 메세지" : 로컬저장소에 commit</li>
+	<li>git log : commit한 history 확인</li>
+	<li>git push origin ( master 또는 branch명 ) : 원격 저장소에 작업한 내용 동기화 </li>
+</ol>
+
+<hr />
+
+<h2>* 파일 되돌리는 방법</h2>
+<ol>
+	<li>git checkout -- : 수정했지만 아직 staging area에 추가하지 않은 파일을 되돌린다.</li>
+	<li>git reset HEAD : 수정했고 스테이지에 추가한 파일을 다시 staging area에서제거 할 때</li>
+	<li>git fetch origin, git reset --hard origin/master : 수정했고 로컬저장소에 commit한 파일을 되돌릴 때</li>
+</ol>
+
+<hr />
+</body>
+</html>
